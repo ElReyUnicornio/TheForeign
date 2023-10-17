@@ -31,7 +31,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject overload;
 
     [Header("Hook settings")]
+    public bool hooked = false;
     private float hookTimer;
+    public GameObject hook;
     public Transform hookTarget;
     public float hookDuration;
     public float hookCooldown;
@@ -39,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     //controls
     public KeyCode dashKey;
     public KeyCode overloadKey;
-    public KeyCode HookKey;
+    public KeyCode hookKey;
 
     //graphics
     SpriteRenderer srPlayer;
@@ -65,9 +67,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (hookTimer > hookCooldown && Input.GetMouseButton(1))
         {
-            //Instantiate(bullet, directionIndicator.transform);
-            //shootTimer = 0;
-            StartCoroutine(HookgoTo(hookTarget.position, hookDuration));
+            Instantiate(hook, directionIndicator.transform);
+            hookTimer = 0;
+        }
+
+        if (hooked && Input.GetKey(hookKey))
+        {
+            hooked = false;
+            StartCoroutine(HookGoTo(hookTarget.position, hookDuration));
         }
 
         if (dashTimer > dashCooldown && Input.GetKeyDown(dashKey))
@@ -116,19 +123,19 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Overload()
     {
-        float scaleCount = 0;
+        float scaleCount = Time.deltaTime;
         overloading = true;
-        for (float i = 0; i < overloadDuration; i+=0.01f) {
-            scaleCount += overloadSpeed * Time.deltaTime;
-            currentOverload.localScale = new Vector3(scaleCount, scaleCount, 0);
-            yield return new WaitForSeconds(i);
+        while (scaleCount < overloadDuration) {
+            scaleCount += Time.deltaTime;
+            currentOverload.localScale = new Vector3(overloadSpeed * (scaleCount / overloadDuration), overloadSpeed * (scaleCount / overloadDuration), 0);
+            yield return null;
         }
         currentOverload.GetComponent<Overload>().DestroyThis();
         overloadTimer = 0;
         overloading = false;
     }
 
-    IEnumerator HookgoTo(Vector3 target, float duration)
+    IEnumerator HookGoTo(Vector3 target, float duration)
     {
         dashing = true;
         float timeElapsed = 0;
