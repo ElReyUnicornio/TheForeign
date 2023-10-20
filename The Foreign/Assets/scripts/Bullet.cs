@@ -9,22 +9,25 @@ public class Bullet : MonoBehaviour
     public float speed = 4.0f;
     public float lifetime = 1.0f;
     float timer = 0;
+    float distance;
     int damage;
-    Collider2D colliderP;
-    private string parentTag;
+    BoxCollider2D colliderP;
+    private string parentT;
+    private Vector3 parentTr;
     // Start is called before the first frame update
     void Start()
     {
-        colliderP = gameObject.GetComponent<Collider2D>();
-        colliderP.isTrigger = true;
-        parentTag = transform.parent.transform.tag;
-        if (parentTag == "enemy")
+        colliderP = GetComponent<BoxCollider2D>();
+        parentT = transform.parent.transform.tag + "";
+        parentTr = new Vector3(transform.parent.transform.position.x, transform.parent.transform.position.y, transform.parent.transform.position.z);
+        if (parentT == "enemy")
         {
             EnemyMovement parent = GetComponentInParent<EnemyMovement>();
+            colliderP.isTrigger = true;
             damage = parent.damage;
         } else { 
             PlayerStats parent = GetComponentInParent<PlayerStats>();
-            damage = parent.bulletDamage; 
+            damage = parent.bulletDamage * parent.bulletDamage; 
         }
 
         transform.parent = null;
@@ -39,12 +42,13 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (Vector2.Distance(gameObject.transform.position, transform.parent.position) > 1.2f) colliderP.isTrigger = false;
+        
+        if (Vector3.Distance(transform.position, parentTr) > 1.2f) colliderP.isTrigger = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "enemy" && parentTag != "enemy")
+        if (collision.transform.tag == "enemy" && parentT != "enemy")
         {
             EnemyMovement target = collision.transform.GetComponent<EnemyMovement>();
             target.hp -= damage;

@@ -41,6 +41,14 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(setDirection());
     }
 
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.transform.tag == "overload") {
+            PlayerStats parent = col.transform.GetComponentInParent<PlayerStats>();
+            hp -= parent.overloadDamage * parent.damage;
+        }
+    }
+
+    //states
     IEnumerator setDirection()
     {
         walking = true;

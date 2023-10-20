@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -38,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
     public float hookDuration;
     public float hookCooldown;
     
+    [Header("UI Settings")]
+    public Scrollbar overloadScroll;
+    public Scrollbar dashScroll;
+    public Scrollbar hookScroll;
+
     //controls
     public KeyCode dashKey;
     public KeyCode overloadKey;
@@ -45,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     //graphics
     SpriteRenderer srPlayer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
         shootTimer += Time.deltaTime;
         overloadTimer += Time.deltaTime;
         hookTimer += Time.deltaTime;
+
+        updateScrollbar();
 
         transform.Translate(new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime));
 
@@ -148,5 +157,26 @@ public class PlayerMovement : MonoBehaviour
         }
         srPlayer.color = new Color(130.0f / 255.0f, 134.0f / 255.0f, 253.0f / 255.0f, 1.0f);
         dashing = false;
+    }
+
+    //check Cooldown scrollbar's
+    void updateScrollbar() {
+        if (overloadTimer <= overloadCooldown) {
+            overloadScroll.size = overloadTimer / overloadCooldown;
+        }else {
+            overloadScroll.size = 1;
+        }
+
+        if (dashTimer <= dashCooldown) {
+            dashScroll.size = dashTimer / dashCooldown;
+        }else {
+            dashScroll.size = 1;
+        }
+
+        if (hookTimer <= hookCooldown) {
+            hookScroll.size = hookTimer / hookCooldown;
+        }else {
+            hookScroll.size = 1;
+        }
     }
 }
