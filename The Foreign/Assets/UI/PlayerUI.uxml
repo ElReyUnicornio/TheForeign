@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PlayerUI.uss?fileID=7433441132597879392&amp;guid=1ec16b773cd92b44ebb1513944a7ddb7&amp;type=3#PlayerUI" />
+    <ui:VisualElement name="main" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; background-image: none;">
+        <ui:VisualElement name="Dialog" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="splash" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/chomp%20concept.png?fileID=2800000&amp;guid=5c38cf19496e78e469790c46801e60d3&amp;type=3#chomp concept&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="TextArea" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text=" " display-tooltip-when-elided="true" name="Dialog-text" style="white-space: normal;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

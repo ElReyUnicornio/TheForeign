@@ -1,0 +1,30 @@
+#Dialog {
+    justify-content: flex-end;
+    align-self: auto;
+    display: none;
+}
+
+#Dialog.active {
+    display: flex;
+}
+
+#splash {
+    min-height: 25%;
+    height: 400px;
+    max-height: 70%;
+    min-width: 25%;
+    width: 400px;
+    max-width: 50%;
+    align-self: flex-end;
+    -unity-background-scale-mode: scale-to-fit;
+    position: relative;
+    top: 20%;
+}
+
+#TextArea {
+    min-height: 150px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    padding: 5px;
+    margin: 10px;
+}

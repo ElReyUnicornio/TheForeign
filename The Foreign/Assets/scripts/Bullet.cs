@@ -53,11 +53,12 @@ public class Bullet : MonoBehaviour
             EnemyMovement target = collision.transform.GetComponent<EnemyMovement>();
             target.hp -= damage;
         }
-        else
+        else if (collision.transform.tag == "Player" && parentT != "Player")
         {
             PlayerStats target = collision.transform.GetComponent<PlayerStats>();
             target.HP -= damage;
         }
+
         Destroy(gameObject);
     }
 }

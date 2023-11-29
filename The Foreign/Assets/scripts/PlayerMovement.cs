@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rbPlayer;
     public GameObject directionIndicator;
     public float speed = 640.0f;
+    public GameObject interaction_F;
+    public PlayerUI ui;
+
+    [Header("States")]
+    public bool talking = false;
+
+    string interactionType;
+    Sign actualSign;
 
     [Header("Dash settings")]
     public float dashDistance = 2.0f;
@@ -48,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode dashKey;
     public KeyCode overloadKey;
     public KeyCode hookKey;
+    public KeyCode interact;
 
     //graphics
     SpriteRenderer srPlayer;
@@ -62,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (talking) return;
         if (dashing) return;
         if (overloading) return;
 
@@ -72,8 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
         updateScrollbar();
 
-        rbPlayer.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime);
-        //transform.Translate(new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime));
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) rbPlayer.MovePosition(transform.position + (new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") , 0) * speed * Time.deltaTime));
 
         if (hookTimer > hookCooldown && Input.GetMouseButton(1))
         {
@@ -101,8 +111,13 @@ public class PlayerMovement : MonoBehaviour
         if (overloadTimer > overloadCooldown && Input.GetKey(overloadKey))
         {
             Instantiate(overload, transform);
-            currentOverload = transform.GetChild(1);
+            currentOverload = transform.GetChild(transform.childCount - 1);
             StartCoroutine(Overload());
+        }
+
+        if (Input.GetKeyDown(interact))
+        {
+            Interactions();
         }
     }
 
@@ -178,6 +193,43 @@ public class PlayerMovement : MonoBehaviour
             hookScroll.size = hookTimer / hookCooldown;
         }else {
             hookScroll.size = 1;
+        }
+    }
+
+    //Triggers and colliders
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("interactable"))
+        {
+            interaction_F.SetActive(true);
+            if (collision.GetComponent<Sign>() != null)
+            {
+                actualSign = collision.GetComponent<Sign>();
+                interactionType = "sign";
+            }
+            
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("interactable"))
+        {
+            interaction_F.SetActive(false);
+            interactionType = "";
+        }
+    }
+
+    //interacciones
+
+    void Interactions ()
+    {
+        switch (interactionType)
+        {
+            case "sign":
+                StartCoroutine(actualSign.Interaction(ui, this));
+                break;
         }
     }
 }
