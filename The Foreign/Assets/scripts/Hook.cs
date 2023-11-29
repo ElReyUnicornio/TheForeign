@@ -35,6 +35,8 @@ public class Hook : MonoBehaviour
             player.hookTarget = collision.transform;
             player.hooked = true;
             Destroy(gameObject);
+        } else {
+            Destroy(gameObject);
         }
     }
 }

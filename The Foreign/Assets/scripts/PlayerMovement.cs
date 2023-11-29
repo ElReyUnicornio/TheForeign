@@ -72,7 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
         updateScrollbar();
 
-        transform.Translate(new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime));
+        rbPlayer.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime);
+        //transform.Translate(new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, Input.GetAxis("Vertical") * speed * Time.deltaTime));
 
         if (hookTimer > hookCooldown && Input.GetMouseButton(1))
         {
