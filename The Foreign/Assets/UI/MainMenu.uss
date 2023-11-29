@@ -1,0 +1,33 @@
+#main {
+    background-color: rgba(0,0,0,1);
+}
+
+#options {
+    background-color: rgba(0,0,0,0.5);
+}
+
+#title {
+    font-size: 80px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    -unity-text-align: upper-center;
+    margin-top: 10%;
+    margin-bottom: 20px;
+}
+
+.menu-option {
+    font-size: 50px;
+    color: white;
+    padding-bottom: 5px;
+    margin-left: 3%;
+    transition: font-size 0.12s ease-in;
+    background-color: transparent;
+    border-width: 0;
+}
+
+.menu-option:hover {
+    font-size: 65px;
+    color: red;
+    font-weight: bold;
+}
