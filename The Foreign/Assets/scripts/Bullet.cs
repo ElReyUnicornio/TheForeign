@@ -56,7 +56,12 @@ public class Bullet : MonoBehaviour
         else if (collision.transform.tag == "Player" && parentT != "Player")
         {
             PlayerStats target = collision.transform.GetComponent<PlayerStats>();
-            target.HP -= damage;
+            PlayerMovement targetState = collision.transform.GetComponent<PlayerMovement>();
+            if (!targetState.dashing)
+            {
+                target.HP -= damage;
+            }
+            
         }
 
         Destroy(gameObject);

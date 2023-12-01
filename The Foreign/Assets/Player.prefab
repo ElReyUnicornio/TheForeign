@@ -283,6 +283,7 @@ MonoBehaviour:
   interaction_F: {fileID: 382256984349194456}
   ui: {fileID: 8180778503875329060}
   talking: 0
+  dashing: 0
   dashDistance: 30
   dashCooldown: 0.2
   shootCooldown: 0.25
@@ -405,6 +406,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUI: {fileID: 5453788677454452792}
+  playerStats: {fileID: 0}
+  paused: 0
+  dead: 0
 --- !u!1 &2575584956837892210
 GameObject:
   m_ObjectHideFlags: 0

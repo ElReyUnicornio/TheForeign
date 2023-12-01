@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
     {
         shootTimer += Time.deltaTime;
 
-        if (Vector2.Distance(transform.position, player.position) <= 5 && shootTimer > shootCooldown)
+        if (Vector2.Distance(transform.position, player.position) <= range && shootTimer > shootCooldown)
         {
             StartCoroutine(shoot());
             Debug.Log("shoot");
@@ -45,6 +45,11 @@ public class EnemyMovement : MonoBehaviour
         if (col.transform.tag == "overload") {
             PlayerStats parent = col.transform.GetComponentInParent<PlayerStats>();
             hp -= parent.overloadDamage * parent.damage;
+        }
+
+        if (col.transform.CompareTag("pikes"))
+        {
+            hp -= col.transform.GetComponent<Pikes>().damage;
         }
     }
 

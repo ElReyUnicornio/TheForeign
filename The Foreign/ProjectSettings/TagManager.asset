@@ -8,6 +8,7 @@ TagManager:
   - hookable
   - overload
   - interactable
+  - pikes
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - ground
-  - 
+  - playerSkill
   - 
   - 
   - 
@@ -47,6 +48,9 @@ TagManager:
     locked: 0
   - name: normal
     uniqueID: 1929743037
+    locked: 0
+  - name: playerSkill
+    uniqueID: 873403147
     locked: 0
   - name: ground
     uniqueID: 2301944141

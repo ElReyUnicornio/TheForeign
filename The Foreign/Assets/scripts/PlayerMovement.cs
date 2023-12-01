@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("States")]
     public bool talking = false;
+    public bool dashing = false;
 
     string interactionType;
     Sign actualSign;
@@ -24,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashDistance = 2.0f;
     public float dashCooldown = 2.0f;
     float dashTimer = 0;
-    bool dashing = false;
+    
 
     [Header("Shoot settings")]
     public float shootCooldown = 2.0f;
@@ -208,8 +209,8 @@ public class PlayerMovement : MonoBehaviour
                 actualSign = collision.GetComponent<Sign>();
                 interactionType = "sign";
             }
-            
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

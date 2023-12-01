@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class Sign : MonoBehaviour
 {
+    [SerializeField]
     public string[] messages = { "Holaaa", "adiooos" };
 
     // Start is called before the first frame update
@@ -39,8 +40,8 @@ public class Sign : MonoBehaviour
                 {
                     ui.DialogText.text = messages[i];
                 }
+                yield return null;
             } else yield return null;
-            Debug.Log(i);
         }
 
         yield return new WaitForSeconds(1);

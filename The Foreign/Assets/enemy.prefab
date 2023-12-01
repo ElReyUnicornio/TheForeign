@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7305913283075031335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 2
   damage: 1
-  speed: 3
+  speed: 4
   walkingTime: 2
-  range: 5
+  range: 20
   player: {fileID: 0}
   shootCooldown: 2
   bullet: {fileID: 8067927804091833522, guid: a7a90cf932770da4091a345f6ee9f144, type: 3}

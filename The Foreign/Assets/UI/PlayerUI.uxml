@@ -7,5 +7,22 @@
                 <ui:Label tabindex="-1" text=" " display-tooltip-when-elided="true" name="Dialog-text" style="white-space: normal;" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="pause" style="flex-grow: 1;">
+            <ui:VisualElement name="pause-container" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="Pause" display-tooltip-when-elided="true" name="pause-title" enable-rich-text="true" />
+                <ui:Button text="Resume" display-tooltip-when-elided="true" name="btnPause0" class="pause-option" />
+                <ui:Button text="Restart" display-tooltip-when-elided="true" name="btnPause1" class="pause-option" />
+                <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="btnPause2" class="pause-option" />
+                <ui:Button text="Exit" display-tooltip-when-elided="true" name="btnPause3" class="pause-option" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="GameOver" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="gameover-container" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" text="You Lose" display-tooltip-when-elided="true" name="gameover-title" />
+                <ui:Button text="Retry" display-tooltip-when-elided="true" name="btnGameover1" class="gameover-option" />
+                <ui:Button text="Main Menu" display-tooltip-when-elided="true" name="btnGameover2" class="gameover-option" />
+                <ui:Button text="Exit" display-tooltip-when-elided="true" name="btnGameover3" class="gameover-option" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

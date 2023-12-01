@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
     Button startButton;
     Button exitButton;
     VisualElement root;
+
     // Start is called before the first frame update
     void Start()
     {

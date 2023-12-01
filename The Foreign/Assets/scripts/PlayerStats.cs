@@ -24,4 +24,12 @@ public class PlayerStats : MonoBehaviour
     {
         hpUI.text = "HP: " + HP + "/5";
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("pikes"))
+        {
+            HP -= collision.transform.GetComponent<Pikes>().damage;
+        }
+    }
 }
